@@ -1,38 +1,1355 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mojion AI Agency</title>
-<style>
-  body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f5f5f5; color: #333; }
-  header { background: #fff; padding: 60px 20px; text-align: center; }
-  .gradient-text { font-size: 48px; font-weight: bold; background: linear-gradient(90deg,#ff512f,#dd2476); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-  .section { padding: 40px 20px; }
-  .cta-button { display: inline-block; padding: 12px 24px; background: #dd2476; color: #fff; text-decoration: none; border-radius: 4px; }
-</style>
+  <meta charset="UTF-8" />
+  <title>Mojion AI – AI Agents & Automation Consulting</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Mojion AI is an AI consulting agency that designs, builds, and manages custom AI agents and automations for modern businesses."
+  />
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --bg-alt: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --accent: #2563eb;
+      --accent-soft: rgba(37, 99, 235, 0.08);
+      --border-subtle: rgba(148, 163, 184, 0.35);
+      --card-radius: 18px;
+      --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.07);
+      --section-padding: 80px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #e0edff, #f9fafb);
+      color: var(--text-main);
+      -webkit-font-smoothing: antialiased;
+      scroll-behavior: smooth;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(16px);
+      background: linear-gradient(
+        to bottom,
+        rgba(248, 250, 252, 0.95),
+        rgba(248, 250, 252, 0.75),
+        transparent
+      );
+      border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+    }
+
+    .nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 14px;
+      background: conic-gradient(
+        from 160deg,
+        #6366f1,
+        #22c55e,
+        #06b6d4,
+        #6366f1
+      );
+      position: relative;
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.45);
+    }
+
+    .logo-mark::after {
+      content: "";
+      position: absolute;
+      inset: 7px;
+      border-radius: 10px;
+      background: radial-gradient(circle at 20% 0, #e0f2fe, #020617);
+      opacity: 0.88;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      font-size: 0.85rem;
+      line-height: 1.15;
+    }
+
+    .logo-text span:first-child {
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      color: #0f172a;
+    }
+
+    .logo-text span:last-child {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .nav-links a {
+      position: relative;
+      padding-bottom: 3px;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #2563eb, #a855f7);
+      transition: width 0.2s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 8px 18px;
+      font-size: 0.9rem;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease,
+        background 0.15s ease, border-color 0.15s ease;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #2563eb, #4f46e5, #a855f7);
+      color: #f9fafb;
+      box-shadow: 0 16px 35px rgba(37, 99, 235, 0.5);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 20px 45px rgba(37, 99, 235, 0.6);
+    }
+
+    .btn-outline {
+      background: rgba(15, 23, 42, 0.01);
+      color: var(--text-main);
+      border-color: rgba(148, 163, 184, 0.6);
+    }
+
+    .btn-outline:hover {
+      background: rgba(148, 163, 184, 0.08);
+      transform: translateY(-1px);
+    }
+
+    .nav-mobile-toggle {
+      display: none;
+    }
+
+    /* Hero */
+    .hero {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 20px var(--section-padding);
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 40px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.06);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 5px rgba(34, 197, 94, 0.3);
+    }
+
+    .hero-title {
+      font-size: clamp(2.4rem, 3vw + 1rem, 3.1rem);
+      line-height: 1.08;
+      margin: 0 0 14px;
+      letter-spacing: -0.04em;
+      color: #020617;
+    }
+
+    .hero-subtitle {
+      font-size: 1.02rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+      max-width: 32rem;
+      margin-bottom: 24px;
+    }
+
+    .gradient-text {
+      /* ReactBits-inspired animated gradient text */
+      background-image: linear-gradient(
+        90deg,
+        #2563eb 0%,
+        #4f46e5 20%,
+        #a855f7 40%,
+        #ec4899 60%,
+        #22c55e 80%,
+        #2563eb 100%
+      );
+      background-size: 200% auto;
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      display: inline-block;
+      animation: gradient-move 5.5s linear infinite;
+    }
+
+    @keyframes gradient-move {
+      0% {
+        background-position: 0% center;
+      }
+      100% {
+        background-position: 200% center;
+      }
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .hero-subnote {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-subnote span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px dashed rgba(148, 163, 184, 0.7);
+      background: rgba(248, 250, 252, 0.9);
+    }
+
+    .hero-right {
+      position: relative;
+    }
+
+    .hero-card {
+      border-radius: 24px;
+      background: radial-gradient(circle at top left, #e0f2fe, #020617);
+      padding: 22px 22px 20px;
+      color: #e5e7eb;
+      position: relative;
+      box-shadow: 0 22px 50px rgba(15, 23, 42, 0.8);
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      pointer-events: none;
+    }
+
+    .hero-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      font-size: 0.8rem;
+    }
+
+    .pill {
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      padding: 4px 9px;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #cbd5f5;
+      background: rgba(15, 23, 42, 0.7);
+    }
+
+    .hero-metric-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .metric-card {
+      border-radius: 16px;
+      padding: 10px 12px 11px;
+      background: linear-gradient(
+        135deg,
+        rgba(15, 23, 42, 0.86),
+        rgba(15, 23, 42, 0.92)
+      );
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      font-size: 0.8rem;
+    }
+
+    .metric-label {
+      color: rgba(148, 163, 184, 0.9);
+      margin-bottom: 4px;
+      font-size: 0.72rem;
+    }
+
+    .metric-value {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .metric-tagline {
+      margin-top: 4px;
+      font-size: 0.68rem;
+      color: rgba(148, 163, 184, 0.9);
+    }
+
+    .hero-card-footer {
+      margin-top: 8px;
+      font-size: 0.75rem;
+      color: rgba(209, 213, 219, 0.9);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .badge-inline {
+      border-radius: 999px;
+      padding: 4px 8px;
+      background: rgba(37, 99, 235, 0.16);
+      border: 1px solid rgba(59, 130, 246, 0.8);
+      font-size: 0.7rem;
+      color: #dbeafe;
+    }
+
+    /* Sections */
+    .section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px var(--section-padding);
+    }
+
+    .section-header {
+      max-width: 640px;
+      margin-bottom: 28px;
+    }
+
+    .section-kicker {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      margin: 0 0 10px;
+      letter-spacing: -0.03em;
+      color: #020617;
+    }
+
+    .section-subtitle {
+      font-size: 0.96rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* Two-column content */
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 32px;
+      align-items: flex-start;
+    }
+
+    .card {
+      background: var(--bg-alt);
+      border-radius: var(--card-radius);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+      padding: 22px 22px 20px;
+    }
+
+    .card-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .card-list-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      margin-top: 5px;
+      background: radial-gradient(circle at 40% 0, #22c55e, #15803d);
+    }
+
+    .card-list-item h4 {
+      margin: 0 0 5px;
+      font-size: 0.95rem;
+    }
+
+    .card-list-item p {
+      margin: 0;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .pill-chip {
+      font-size: 0.75rem;
+      border-radius: 999px;
+      padding: 4px 9px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(248, 250, 252, 0.9);
+      color: var(--text-muted);
+    }
+
+    /* Services grid */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .service-card {
+      background: var(--bg-alt);
+      border-radius: var(--card-radius);
+      padding: 20px 18px 18px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        circle at top left,
+        rgba(37, 99, 235, 0.18),
+        transparent 55%
+      );
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .service-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .service-title {
+      margin: 0 0 8px;
+      font-size: 1rem;
+    }
+
+    .service-desc {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      margin: 0 0 10px;
+    }
+
+    .service-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      font-size: 0.73rem;
+      color: var(--text-muted);
+    }
+
+    .service-tag {
+      border-radius: 999px;
+      padding: 3px 8px;
+      background: var(--accent-soft);
+      color: #1d4ed8;
+    }
+
+    /* Process */
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .step {
+      background: var(--bg-alt);
+      border-radius: var(--card-radius);
+      padding: 16px 14px 14px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      box-shadow: 0 12px 25px rgba(15, 23, 42, 0.05);
+      font-size: 0.85rem;
+    }
+
+    .step-number {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.76rem;
+      font-weight: 600;
+      background: rgba(37, 99, 235, 0.1);
+      color: #1d4ed8;
+      margin-bottom: 8px;
+    }
+
+    .step h4 {
+      margin: 0 0 6px;
+      font-size: 0.92rem;
+    }
+
+    .step p {
+      margin: 0;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Industries */
+    .industries-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .industry-card {
+      border-radius: var(--card-radius);
+      padding: 16px 16px 14px;
+      background: var(--bg-alt);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      font-size: 0.84rem;
+    }
+
+    .industry-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin: 0 0 8px;
+    }
+
+    .industry-card ul {
+      padding-left: 16px;
+      margin: 0;
+      color: var(--text-muted);
+    }
+
+    .industry-card li {
+      margin-bottom: 4px;
+    }
+
+    /* FAQ */
+    .faq-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 22px;
+    }
+
+    .faq-item {
+      border-radius: 16px;
+      padding: 13px 15px 11px;
+      background: var(--bg-alt);
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      font-size: 0.86rem;
+    }
+
+    .faq-item h4 {
+      margin: 0 0 4px;
+      font-size: 0.9rem;
+    }
+
+    .faq-item p {
+      margin: 0;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* Contact */
+    .contact-section {
+      padding-bottom: 60px;
+    }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 32px;
+    }
+
+    .contact-card {
+      background: var(--bg-alt);
+      border-radius: 20px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      box-shadow: var(--shadow-soft);
+      padding: 22px 22px 18px;
+    }
+
+    .contact-row {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .contact-row strong {
+      color: var(--text-main);
+    }
+
+    form {
+      display: grid;
+      gap: 10px;
+    }
+
+    label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+      display: block;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      padding: 8px 10px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      background-color: rgba(248, 250, 252, 0.9);
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease,
+        background 0.15s ease;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.4);
+      background-color: #ffffff;
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .form-row-inline {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .small-note {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid rgba(148, 163, 184, 0.2);
+      padding: 16px 20px 22px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      background: rgba(248, 250, 252, 0.98);
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      text-decoration: underline;
+      text-decoration-style: dotted;
+      text-underline-offset: 3px;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero,
+      .two-col,
+      .process-steps,
+      .industries-grid,
+      .faq-grid,
+      .contact-layout,
+      .grid-3 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .process-steps {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hero {
+        padding-top: 28px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav-links {
+        display: none;
+      }
+
+      .nav-mobile-toggle {
+        display: inline-flex;
+        border-radius: 999px;
+        border: 1px solid rgba(148, 163, 184, 0.6);
+        background: rgba(248, 250, 252, 0.9);
+        padding: 6px 10px;
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        cursor: default;
+      }
+
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-right {
+        order: -1;
+      }
+
+      .hero-card {
+        margin-bottom: 6px;
+      }
+
+      .process-steps {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .industries-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1 class="gradient-text">Mojion LLC</h1>
-    <p>AI Consulting &amp; Automation Services</p>
-    <a class="cta-button" href="#contact">Book a Free Consultation</a>
-  </header>
-  <section class="section">
-    <h2>Our Mission</h2>
-    <p>We provide cutting-edge AI agents and workflow automations to streamline your business operations.</p>
-  </section>
-  <section class="section">
-    <h2>Services</h2>
-    <ul>
-      <li>AI Voice Agents</li>
-      <li>Workflow Automation</li>
-      <li>Custom AI Solutions</li>
-    </ul>
-  </section>
-  <section id="contact" class="section">
-    <h2>Contact Us</h2>
-    <p>Email us at <a href="mailto:info@mojionai.com">info@mojionai.com</a></p>
-  </section>
+  <div class="page">
+    <!-- HEADER -->
+    <header>
+      <nav class="nav">
+        <a href="#hero" class="logo">
+          <div class="logo-mark"></div>
+          <div class="logo-text">
+            <span>MOJION LLC</span>
+            <span>AI Agents & Automation</span>
+          </div>
+        </a>
+
+        <div class="nav-links">
+          <a href="#services">Services</a>
+          <a href="#process">Process</a>
+          <a href="#industries">Industries</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contact">Contact</a>
+        </div>
+
+        <div class="nav-cta">
+          <span class="nav-mobile-toggle">Menu</span>
+          <a href="#contact" class="btn btn-outline">Contact</a>
+          <a href="#contact" class="btn btn-primary">Book Consultation</a>
+        </div>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <main id="hero" class="hero">
+      <section>
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          AI Agents & Automation Consulting
+        </div>
+        <h1 class="hero-title">
+          <span class="gradient-text">Mojion LLC</span> builds AI agents that
+          answer, qualify, and automate — 24/7.
+        </h1>
+        <p class="hero-subtitle">
+          We help modern teams design, deploy, and manage AI agents and
+          automations that reduce repetitive work, capture more opportunities,
+          and unlock new levels of efficiency.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">
+            Book a Free Discovery Call
+          </a>
+          <a href="#services" class="btn btn-outline">
+            Explore Services
+          </a>
+        </div>
+
+        <div class="hero-subnote">
+          <span>Built for real operations, not just demos.</span>
+          <span>✔ Consulting & strategy ✔ Agent development ✔ Ongoing support</span>
+        </div>
+      </section>
+
+      <aside class="hero-right">
+        <div class="hero-card">
+          <div class="hero-card-header">
+            <span class="pill">AI Agent Performance Snapshot</span>
+            <span style="font-size: 0.75rem; color: #9ca3af;">
+              In production with clients
+            </span>
+          </div>
+
+          <div class="hero-metric-row">
+            <div class="metric-card">
+              <div class="metric-label">Workload offloaded</div>
+              <div class="metric-value">30–60%</div>
+              <div class="metric-tagline">Front-desk & repetitive flows</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Availability</div>
+              <div class="metric-value">24/7</div>
+              <div class="metric-tagline">No missed calls or leads</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Time to value</div>
+              <div class="metric-value">4–8 weeks</div>
+              <div class="metric-tagline">From idea to live agent</div>
+            </div>
+          </div>
+
+          <div class="hero-card-footer">
+            <span>
+              <strong>Focus:</strong> AI agents for calls, chat, and workflow
+              automation.
+            </span>
+            <span class="badge-inline">Strategy + Build + Manage</span>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <!-- WHY / PROBLEM + SOLUTION -->
+    <section id="why" class="section">
+      <div class="two-col">
+        <div>
+          <div class="section-header">
+            <p class="section-kicker">Why teams work with Mojion</p>
+            <h2 class="section-title">
+              Your team is drowning in repetitive work. AI agents can change
+              that.
+            </h2>
+            <p class="section-subtitle">
+              Calls, emails, intake forms, scheduling, follow-ups — the work
+              keeps growing, but your headcount and hours don’t. We design AI
+              agents and automations that plug into your existing tools and help
+              your team stay focused on high-value work.
+            </p>
+          </div>
+
+          <div class="card card-list">
+            <div class="card-list-item">
+              <span class="dot"></span>
+              <div>
+                <h4>Stop missing calls, leads, and opportunities</h4>
+                <p>
+                  Always-on AI agents answer questions, qualify inquiries, and
+                  route or book appointments so opportunities are captured —
+                  even outside working hours.
+                </p>
+              </div>
+            </div>
+            <div class="card-list-item">
+              <span class="dot"></span>
+              <div>
+                <h4>Give your team hours back every day</h4>
+                <p>
+                  Automate repetitive workflows like intake, FAQs, reminders,
+                  and status updates. Your staff stays focused on expertise,
+                  not admin loops.
+                </p>
+              </div>
+            </div>
+            <div class="card-list-item">
+              <span class="dot"></span>
+              <div>
+                <h4>Scale without constantly hiring</h4>
+                <p>
+                  As volume increases, AI agents and automations absorb the
+                  extra workload so service quality stays consistent while you
+                  scale revenue.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="card">
+            <h3 style="margin: 0 0 6px; font-size: 1rem;">
+              A consulting partner, not just a tool
+            </h3>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">
+              We combine AI strategy, solution design, and engineering to turn
+              your workflows into working agents and automations — safely and
+              pragmatically.
+            </p>
+
+            <div class="pill-row">
+              <span class="pill-chip">AI strategy & roadmap</span>
+              <span class="pill-chip">Agent design & conversation flows</span>
+              <span class="pill-chip">Integration with your systems</span>
+              <span class="pill-chip">Monitoring & continuous tuning</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="section">
+      <div class="section-header">
+        <p class="section-kicker">What we do</p>
+        <h2 class="section-title">
+          Consulting, AI agents, and automations — from idea to live system.
+        </h2>
+        <p class="section-subtitle">
+          Our work spans from high-level strategy and workflow design all the
+          way down to implementation, integration, and long-term management of
+          AI systems.
+        </p>
+      </div>
+
+      <div class="grid-3">
+        <article class="service-card">
+          <div class="service-label">Consulting</div>
+          <h3 class="service-title">AI & Automation Strategy</h3>
+          <p class="service-desc">
+            We map your processes, identify automation opportunities, and
+            prioritize what to build first based on impact and feasibility.
+          </p>
+          <div class="service-tags">
+            <span class="service-tag">Process mapping</span>
+            <span class="service-tag">Use-case design</span>
+            <span class="service-tag">ROI analysis</span>
+          </div>
+        </article>
+
+        <article class="service-card">
+          <div class="service-label">AI Agents</div>
+          <h3 class="service-title">Voice, Chat & Inbox Agents</h3>
+          <p class="service-desc">
+            Custom AI agents that answer calls, chat with visitors, qualify
+            leads, and handle repetitive conversations with human-level context.
+          </p>
+          <div class="service-tags">
+            <span class="service-tag">24/7 coverage</span>
+            <span class="service-tag">Lead qualification</span>
+            <span class="service-tag">Scheduling & routing</span>
+          </div>
+        </article>
+
+        <article class="service-card">
+          <div class="service-label">Automation</div>
+          <h3 class="service-title">Workflow & Back-office Automation</h3>
+          <p class="service-desc">
+            Automations that connect your tools: CRMs, EHRs, scheduling apps,
+            ticketing systems, internal databases, and more.
+          </p>
+          <div class="service-tags">
+            <span class="service-tag">Integrations</span>
+            <span class="service-tag">Internal workflows</span>
+            <span class="service-tag">Reporting & alerts</span>
+          </div>
+        </article>
+
+        <article class="service-card">
+          <div class="service-label">Deployment</div>
+          <h3 class="service-title">Cloud & Self-hosted Options</h3>
+          <p class="service-desc">
+            Deploy in the cloud for speed, or explore self-hosted and
+            enterprise-grade options when data control and compliance matter.
+          </p>
+          <div class="service-tags">
+            <span class="service-tag">Cloud</span>
+            <span class="service-tag">Self-hosted</span>
+            <span class="service-tag">Security & controls</span>
+          </div>
+        </article>
+
+        <article class="service-card">
+          <div class="service-label">Partnership</div>
+          <h3 class="service-title">Ongoing Optimization & Support</h3>
+          <p class="service-desc">
+            Real-world operations change. We monitor agents, review transcripts,
+            and optimize flows so performance keeps improving.
+          </p>
+          <div class="service-tags">
+            <span class="service-tag">Monitoring</span>
+            <span class="service-tag">Iteration</span>
+            <span class="service-tag">Team training</span>
+          </div>
+        </article>
+
+        <article class="service-card">
+          <div class="service-label">Advisory</div>
+          <h3 class="service-title">Executive & Team Enablement</h3>
+          <p class="service-desc">
+            Workshops and advisory support so leadership and teams understand
+            where AI fits and how to use it responsibly.
+          </p>
+          <div class="service-tags">
+            <span class="service-tag">Workshops</span>
+            <span class="service-tag">Playbooks</span>
+            <span class="service-tag">Governance</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section id="process" class="section">
+      <div class="section-header">
+        <p class="section-kicker">How we work</p>
+        <h2 class="section-title">
+          A clear, consultative process from discovery to live agents.
+        </h2>
+        <p class="section-subtitle">
+          We combine consulting, design, and engineering into one end-to-end
+          process, so you’re never left with a strategy slide deck that doesn’t
+          turn into reality.
+        </p>
+      </div>
+
+      <div class="process-steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h4>Discovery & ROI Workshop</h4>
+          <p>
+            We unpack your goals, map key workflows, and identify where AI
+            agents and automations can create real value.
+          </p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h4>Blueprint & Solution Design</h4>
+          <p>
+            We design conversation flows, agent roles, data connections, and
+            success metrics with your team.
+          </p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h4>Build, Integrate & Test</h4>
+          <p>
+            We implement agents and automations, integrate with your tools, and
+            test in realistic scenarios.
+          </p>
+        </div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <h4>Launch, Monitor & Improve</h4>
+          <p>
+            We launch carefully, monitor performance, and iterate so your AI
+            systems keep getting better.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- INDUSTRIES -->
+    <section id="industries" class="section">
+      <div class="section-header">
+        <p class="section-kicker">Who we help</p>
+        <h2 class="section-title">
+          Built for teams that rely on conversations and operations.
+        </h2>
+        <p class="section-subtitle">
+          Our best results come from teams that have busy phones, inboxes, and
+          workflows — and want AI to support their people, not replace them.
+        </p>
+      </div>
+
+      <div class="industries-grid">
+        <div class="industry-card">
+          <h3 class="industry-title">Healthcare & Clinics</h3>
+          <ul>
+            <li>Call handling & intake</li>
+            <li>Appointment requests & reminders</li>
+            <li>Routing to the right staff</li>
+          </ul>
+        </div>
+        <div class="industry-card">
+          <h3 class="industry-title">Professional & Service Businesses</h3>
+          <ul>
+            <li>Lead qualification & scheduling</li>
+            <li>Project intake & FAQs</li>
+            <li>Client updates & follow-ups</li>
+          </ul>
+        </div>
+        <div class="industry-card">
+          <h3 class="industry-title">Operations & Support Teams</h3>
+          <ul>
+            <li>Tier 0/1 support agents</li>
+            <li>Internal workflows & escalations</li>
+            <li>Reporting & notifications</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="section">
+      <div class="faq-grid">
+        <div>
+          <div class="section-header" style="margin-bottom: 16px;">
+            <p class="section-kicker">Questions</p>
+            <h2 class="section-title">FAQ</h2>
+            <p class="section-subtitle">
+              A few common questions we hear when teams are exploring AI agents
+              and automation. Have something more specific? Add it to your
+              message in the contact form.
+            </p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="faq-item">
+            <h4>How long does it take to go live?</h4>
+            <p>
+              It depends on your workflows and systems, but most projects move
+              from discovery to a live agent or automation in 4–8 weeks.
+            </p>
+          </div>
+          <div class="faq-item">
+            <h4>Will AI replace my team?</h4>
+            <p>
+              Our focus is on supporting your team — offloading repetitive,
+              scripted work so people can focus on complex, high-value tasks and
+              human relationships.
+            </p>
+          </div>
+          <div class="faq-item">
+            <h4>Can you work with our existing tools?</h4>
+            <p>
+              Yes. We design around your existing stack wherever possible,
+              integrating with CRMs, EHRs, ticketing systems, scheduling tools,
+              and internal databases.
+            </p>
+          </div>
+          <div class="faq-item">
+            <h4>How do we start?</h4>
+            <p>
+              Start with a discovery call. We’ll clarify goals, review
+              workflows, and outline a phased approach before any commitment.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section contact-section">
+      <div class="section-header">
+        <p class="section-kicker">Next steps</p>
+        <h2 class="section-title">Tell us what you’d like to automate.</h2>
+        <p class="section-subtitle">
+          Share a bit about your team, your workflows, and what you’d love AI to
+          take off your plate. We’ll respond with a short note and a link to
+          book time.
+        </p>
+      </div>
+
+      <div class="contact-layout">
+        <div class="contact-card">
+          <h3 style="margin: 0 0 10px; font-size: 1rem;">
+            Contact Mojion LLC
+          </h3>
+          <p class="contact-row">
+            <strong>Email:</strong>
+            <!-- Replace with your real contact email -->
+            <a href="mailto:hello@mojionai.com">hello@mojionai.com</a>
+          </p>
+          <p class="contact-row">
+            <strong>Location:</strong> Based in the United States — working with
+            teams remotely.
+          </p>
+          <p class="small-note">
+            Prefer a direct call link or scheduling page? We can add Calendly or
+            your booking tool here.
+          </p>
+        </div>
+
+        <div class="contact-card">
+          <!-- Note: for a real backend, replace the action with your form handler -->
+          <form
+            method="post"
+            action="mailto:hello@mojionai.com"
+            enctype="text/plain"
+          >
+            <div class="form-row-inline">
+              <div>
+                <label for="name">Name</label>
+                <input id="name" name="name" type="text" required />
+              </div>
+              <div>
+                <label for="company">Company</label>
+                <input id="company" name="company" type="text" />
+              </div>
+            </div>
+
+            <div class="form-row-inline">
+              <div>
+                <label for="email">Work email</label>
+                <input id="email" name="email" type="email" required />
+              </div>
+              <div>
+                <label for="role">Role</label>
+                <input id="role" name="role" type="text" />
+              </div>
+            </div>
+
+            <div>
+              <label for="topic">What would you like to explore?</label>
+              <textarea
+                id="topic"
+                name="topic"
+                placeholder="Example: inbound call handling for our clinic, intake automation, and follow-up reminders."
+              ></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+              Send message
+            </button>
+            <p class="small-note">
+              This simple form sends us an email. We can switch to a more
+              advanced form solution if you prefer.
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-inner">
+        <span>© <span id="year"></span> Mojion LLC. All rights reserved.</span>
+        <div class="footer-links">
+          <a href="#hero">Back to top</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Set current year in the footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
